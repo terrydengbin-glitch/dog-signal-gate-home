@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dog Signal Gate | 共建开源智能交易 Alpha 体系</title>
   <meta name="description" content="Dog Signal Gate 是一个面向智能交易、量化研究和交易工程的开源共建社群。Knowledge MCP、Strategy Lab、AI Trader 是已经开源的三个产品，后续上传仓库后将同步真实 repo 链接，邀请开发者、研究者和交易者一起完善系统、验证策略、寻找 Alpha。" />
+  <script>
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    if (!location.hash) {
+      window.scrollTo(0, 0);
+    }
+  </script>
   <style>
     :root {
       --bg: #070a0f;
@@ -26,7 +34,7 @@
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-anchor: none; }
     body {
       margin: 0;
       color: var(--text);
@@ -766,7 +774,7 @@
     <div class="wrap nav-inner">
       <a class="brand" href="#top" aria-label="Dog Signal Gate Home">
         <span class="logo" aria-hidden="true">
-          <img src="dog-signal-gate-icon.png" alt="" />
+          <img src="dog-signal-gate-icon.png" width="687" height="687" alt="" />
         </span>
         <span>Dog Signal Gate</span>
       </a>
@@ -786,7 +794,7 @@
         <div>
           <div class="eyebrow"><span class="dot"></span>开源智能交易社群</div>
           <h1 class="hero-title">
-            <img class="hero-logo" src="dog-signal-gate-logo.png" alt="Dog Signal Gate" />
+            <img class="hero-logo" src="dog-signal-gate-logo.png" width="1436" height="592" alt="Dog Signal Gate" />
             <span class="accent" data-text="共建开源智能交易 Alpha 体系">共建开源智能交易 Alpha 体系</span>
           </h1>
           <p class="lead">我们已经把智能交易、量化研究和交易工程沉淀成三套开源产品。后续上传仓库后，会同步真实 repo 链接；现在邀请开发者、研究者和交易者一起完善工具、验证策略、积累数据资产，持续寻找更高质量的 Alpha。</p>
@@ -1043,12 +1051,26 @@
   </footer>
 
   <script>
-    if ("scrollRestoration" in history) {
-      history.scrollRestoration = "manual";
-    }
+    const shouldStartAtTop = !window.location.hash;
+    const resetToTop = () => {
+      if (!shouldStartAtTop) return;
+      const root = document.documentElement;
+      const previousScrollBehavior = root.style.scrollBehavior;
+      root.style.scrollBehavior = "auto";
+      window.scrollTo(0, 0);
+      root.scrollTop = 0;
+      document.body.scrollTop = 0;
+      requestAnimationFrame(() => {
+        root.style.scrollBehavior = previousScrollBehavior;
+      });
+    };
 
-    window.addEventListener("pageshow", () => {
-      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    ["DOMContentLoaded", "load", "pageshow"].forEach((eventName) => {
+      window.addEventListener(eventName, resetToTop);
+    });
+
+    [0, 80, 260, 700].forEach((delay) => {
+      window.setTimeout(resetToTop, delay);
     });
 
     const io = new IntersectionObserver((entries) => {
