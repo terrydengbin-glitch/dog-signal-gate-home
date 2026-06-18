@@ -1,0 +1,1063 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dog Signal Gate | 共建开源智能交易 Alpha 体系</title>
+  <meta name="description" content="Dog Signal Gate 是一个面向智能交易、量化研究和交易工程的开源共建社群。Knowledge MCP、Strategy Lab、AI Trader 是已经开源的三个产品，后续上传仓库后将同步真实 repo 链接，邀请开发者、研究者和交易者一起完善系统、验证策略、寻找 Alpha。" />
+  <style>
+    :root {
+      --bg: #070a0f;
+      --bg-soft: #0d1218;
+      --surface: rgba(255, 255, 255, .07);
+      --surface-strong: rgba(255, 255, 255, .11);
+      --line: rgba(255, 255, 255, .13);
+      --line-soft: rgba(255, 255, 255, .08);
+      --text: #f4f7fb;
+      --muted: #a9b3c2;
+      --muted-2: #768294;
+      --cyan: #67e8f9;
+      --lime: #bef264;
+      --amber: #fcd34d;
+      --rose: #fb7185;
+      --max: 1160px;
+      --radius: 8px;
+      --shadow: 0 22px 80px rgba(0, 0, 0, .36);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      background:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(180deg, #070a0f 0%, #0c1118 46%, #070a0f 100%);
+      background-size: 48px 48px, 48px 48px, auto;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        linear-gradient(130deg, rgba(103,232,249,.18), transparent 32%),
+        linear-gradient(310deg, rgba(190,242,100,.13), transparent 38%),
+        linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(7,10,15,.88) 82%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line-soft);
+      background: rgba(7, 10, 15, .78);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .logo {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius);
+      color: #061019;
+      border: 1px solid rgba(103,232,249,.22);
+      background: radial-gradient(circle at 50% 45%, rgba(103,232,249,.14), rgba(190,242,100,.08) 58%, rgba(7,10,15,.38));
+      box-shadow: 0 12px 34px rgba(103, 232, 249, .16);
+      overflow: hidden;
+    }
+
+    .logo img {
+      width: 42px;
+      height: 42px;
+      display: block;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 16px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.075);
+      color: var(--text);
+      font-weight: 800;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(103,232,249,.42);
+      background: rgba(255,255,255,.11);
+    }
+
+    .btn.primary {
+      border: 0;
+      color: #061019;
+      background: linear-gradient(135deg, var(--cyan), var(--lime));
+    }
+
+    .hero { padding: 78px 0 52px; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.04fr .96fr;
+      gap: 40px;
+      align-items: stretch;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 20px;
+      padding: 8px 12px;
+      border: 1px solid rgba(103,232,249,.30);
+      border-radius: var(--radius);
+      color: #c8f8ff;
+      background: rgba(103,232,249,.08);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 18px rgba(190,242,100,.72);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(42px, 6vw, 76px);
+      line-height: .98;
+      letter-spacing: -2.8px;
+    }
+
+    .hero-title {
+      display: grid;
+      gap: 16px;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .hero-logo {
+      display: block;
+      width: min(100%, 650px);
+      height: auto;
+      filter: drop-shadow(0 18px 34px rgba(0, 0, 0, .36));
+    }
+
+    .hero-title .accent {
+      display: block;
+      position: relative;
+      max-width: 760px;
+      font-size: clamp(34px, 4.5vw, 58px);
+      line-height: 1.08;
+      letter-spacing: -1.6px;
+      color: var(--cyan);
+      -webkit-text-stroke: 1px rgba(199, 248, 255, .32);
+      text-shadow:
+        0 0 18px rgba(103, 232, 249, .18),
+        0 10px 34px rgba(0, 0, 0, .35);
+    }
+
+    .hero-title .accent::before,
+    .hero-title .accent::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .hero-title .accent::before {
+      color: transparent;
+      -webkit-text-stroke: 2px rgba(190, 242, 100, .16);
+      filter: drop-shadow(0 0 12px rgba(103, 232, 249, .18));
+    }
+
+    .hero-title .accent::after {
+      color: transparent;
+      background: linear-gradient(
+        110deg,
+        transparent 0%,
+        transparent 38%,
+        rgba(255,255,255,.95) 46%,
+        rgba(190,242,100,.95) 50%,
+        rgba(103,232,249,.95) 54%,
+        transparent 62%,
+        transparent 100%
+      );
+      background-size: 260% 100%;
+      background-position: 140% 0;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-stroke: 1px rgba(255,255,255,.62);
+      filter: drop-shadow(0 0 12px rgba(190,242,100,.34));
+      animation: titleSweep 3.8s ease-in-out infinite;
+    }
+
+    @keyframes titleSweep {
+      0%, 18% { background-position: 140% 0; opacity: 0; }
+      26% { opacity: 1; }
+      58% { background-position: -60% 0; opacity: 1; }
+      72%, 100% { background-position: -60% 0; opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-title .accent::after {
+        animation: none;
+        opacity: 0;
+      }
+    }
+
+    .accent {
+      color: var(--cyan);
+    }
+
+    .hl-cyan { color: var(--cyan); font-weight: 900; }
+    .hl-lime { color: var(--lime); font-weight: 900; }
+    .hl-amber { color: var(--amber); font-weight: 900; }
+    .hl-rose { color: #ff9bad; font-weight: 900; }
+
+    .lead {
+      max-width: 690px;
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.78;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 34px;
+      max-width: 680px;
+    }
+
+    .stat {
+      min-height: 104px;
+      padding: 16px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.045);
+    }
+
+    .stat b {
+      display: block;
+      font-size: 24px;
+      letter-spacing: -1px;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted-2);
+      font-size: 13px;
+      line-height: 1.48;
+    }
+
+    .console {
+      position: relative;
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.045));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .console-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 52px;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--line-soft);
+      color: var(--muted);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+      background: rgba(0,0,0,.18);
+    }
+
+    .lights { display: flex; gap: 7px; }
+    .lights i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.22); }
+
+    .console-body {
+      flex: 1;
+      padding: 18px;
+      display: grid;
+      align-content: start;
+      gap: 12px;
+    }
+
+    .stack-equation {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr auto 1.2fr;
+      gap: 8px;
+      align-items: stretch;
+      padding: 14px;
+      border: 1px solid rgba(103,232,249,.16);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(103,232,249,.10), rgba(190,242,100,.06));
+    }
+
+    .eq-token,
+    .eq-plus {
+      min-height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius);
+      font-weight: 900;
+    }
+
+    .eq-token {
+      border: 1px solid var(--line-soft);
+      background: rgba(7,10,15,.46);
+      color: var(--cyan);
+      text-align: center;
+      line-height: 1.2;
+      font-size: 13px;
+    }
+
+    .eq-token strong {
+      display: block;
+      color: var(--text);
+      font-size: 18px;
+    }
+
+    .eq-token.you {
+      color: #eaffbd;
+      border-color: rgba(190,242,100,.28);
+      background: rgba(190,242,100,.10);
+    }
+
+    .eq-plus {
+      color: var(--muted-2);
+      font-size: 18px;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: 46px 1fr auto;
+      gap: 14px;
+      align-items: center;
+      min-height: 92px;
+      padding: 14px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      background: rgba(7,10,15,.48);
+    }
+
+    .flow code {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius);
+      background: rgba(103,232,249,.12);
+      color: var(--cyan);
+      font-weight: 900;
+    }
+
+    .flow h3 { margin: 0 0 5px; font-size: 16px; }
+    .flow p { margin: 0; color: var(--muted-2); font-size: 13px; line-height: 1.55; }
+
+    .tag {
+      padding: 6px 9px;
+      border: 1px solid rgba(190,242,100,.2);
+      border-radius: var(--radius);
+      color: #eaffbd;
+      background: rgba(190,242,100,.08);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .signal-board {
+      margin: 6px 18px 18px;
+      padding: 16px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      background: rgba(0,0,0,.16);
+    }
+
+    .community-result {
+      margin: 0 18px 18px;
+      padding: 16px;
+      border: 1px solid rgba(190,242,100,.22);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(103,232,249,.08), rgba(190,242,100,.08));
+    }
+
+    .community-result b {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text);
+      font-size: 16px;
+    }
+
+    .community-result span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .board-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 16px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .bars { display: grid; gap: 10px; }
+    .bar { height: 12px; border-radius: 999px; background: rgba(255,255,255,.08); overflow: hidden; }
+    .bar span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--cyan), var(--lime), var(--amber)); }
+
+    section { padding: 62px 0; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: end;
+      margin-bottom: 26px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(30px, 4.2vw, 48px);
+      line-height: 1.06;
+      letter-spacing: -1.5px;
+    }
+
+    .section-head p {
+      max-width: 560px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.72;
+    }
+
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card, .panel, .product {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.055);
+      box-shadow: 0 18px 62px rgba(0,0,0,.18);
+    }
+
+    .product {
+      min-height: 440px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .num {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(103,232,249,.24);
+      border-radius: var(--radius);
+      color: var(--cyan);
+      background: rgba(103,232,249,.10);
+      font-weight: 900;
+    }
+
+    .product h3 {
+      margin: 22px 0 10px;
+      font-size: 24px;
+      letter-spacing: -.6px;
+    }
+
+    .product p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.72;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .feature-list div {
+      display: flex;
+      gap: 10px;
+      color: #dde7f3;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .check { color: var(--lime); font-weight: 900; }
+
+    .product .repo {
+      margin-top: auto;
+      padding-top: 22px;
+      color: var(--muted-2);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+    }
+
+    .mission {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .panel {
+      padding: 24px;
+    }
+
+    .panel h3 {
+      margin: 0 0 12px;
+      font-size: 22px;
+      letter-spacing: -.5px;
+    }
+
+    .panel p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.045);
+      box-shadow: var(--shadow);
+    }
+
+    .pipe {
+      position: relative;
+      min-height: 140px;
+      padding: 16px 13px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      background: rgba(7,10,15,.42);
+    }
+
+    .pipe:not(:last-child)::after {
+      content: ">";
+      position: absolute;
+      right: -10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--cyan);
+      font-weight: 900;
+      z-index: 2;
+    }
+
+    .pipe b { display: block; margin-bottom: 10px; font-size: 14px; }
+    .pipe span { display: block; color: var(--muted-2); font-size: 12px; line-height: 1.58; }
+
+    .table {
+      display: grid;
+      gap: 9px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 14px;
+      padding: 14px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      background: rgba(0,0,0,.14);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.58;
+    }
+
+    .row strong { color: var(--text); }
+
+    .roadmap {
+      display: grid;
+      gap: 14px;
+      counter-reset: step;
+    }
+
+    .step {
+      counter-increment: step;
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.045);
+    }
+
+    .step::before {
+      content: "0" counter(step);
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(103,232,249,.22);
+      border-radius: var(--radius);
+      color: var(--cyan);
+      background: rgba(103,232,249,.10);
+      font-weight: 900;
+    }
+
+    .step h3 { margin: 0 0 6px; font-size: 18px; }
+    .step p { margin: 0; color: var(--muted); line-height: 1.65; }
+
+    .join {
+      padding: 42px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(103,232,249,.17), rgba(255,255,255,.06) 42%, rgba(190,242,100,.13));
+      box-shadow: var(--shadow);
+    }
+
+    .join h2 {
+      max-width: 850px;
+      margin: 0;
+      font-size: clamp(31px, 4.8vw, 54px);
+      line-height: 1.08;
+      letter-spacing: -1.7px;
+    }
+
+    .join p {
+      max-width: 770px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    .risk {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border: 1px solid rgba(251,113,133,.22);
+      border-radius: var(--radius);
+      color: #ffc4ce;
+      background: rgba(251,113,133,.06);
+      line-height: 1.62;
+      font-size: 14px;
+    }
+
+    .footer {
+      margin-top: 34px;
+      padding: 34px 0 48px;
+      border-top: 1px solid var(--line-soft);
+      color: var(--muted-2);
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid, .mission { grid-template-columns: 1fr; }
+      .cards-3 { grid-template-columns: 1fr; }
+      .pipeline { grid-template-columns: 1fr; }
+      .pipe:not(:last-child)::after {
+        right: 50%;
+        top: auto;
+        bottom: -17px;
+        transform: translateX(50%) rotate(90deg);
+      }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { width: min(var(--max), calc(100% - 26px)); }
+      .hero { padding-top: 52px; }
+      h1 { letter-spacing: -1.8px; }
+      .lead { font-size: 18px; }
+      .stats { grid-template-columns: 1fr; }
+      .section-head { display: block; }
+      .section-head p { margin-top: 14px; }
+      .stack-equation { grid-template-columns: 1fr; }
+      .eq-plus { min-height: 20px; }
+      .flow { grid-template-columns: 42px 1fr; }
+      .flow .tag { grid-column: 2; width: max-content; }
+      .row, .step { grid-template-columns: 1fr; }
+      .join { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="Dog Signal Gate Home">
+        <span class="logo" aria-hidden="true">
+          <img src="dog-signal-gate-icon.png" alt="" />
+        </span>
+        <span>Dog Signal Gate</span>
+      </a>
+      <div class="nav-links">
+        <a href="#products">开源项目</a>
+        <a href="#mission">社群目标</a>
+        <a href="#architecture">系统闭环</a>
+        <a href="#roadmap">路线图</a>
+      </div>
+      <a class="btn" href="#join">参与共建</a>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><span class="dot"></span>开源智能交易社群</div>
+          <h1 class="hero-title">
+            <img class="hero-logo" src="dog-signal-gate-logo.png" alt="Dog Signal Gate" />
+            <span class="accent" data-text="共建开源智能交易 Alpha 体系">共建开源智能交易 Alpha 体系</span>
+          </h1>
+          <p class="lead">我们已经把智能交易、量化研究和交易工程沉淀成三套开源产品。后续上传仓库后，会同步真实 repo 链接；现在邀请开发者、研究者和交易者一起完善工具、验证策略、积累数据资产，持续寻找更高质量的 Alpha。</p>
+          <div class="actions">
+            <a class="btn primary" href="#products">查看三个开源项目</a>
+            <a class="btn" href="#join">加入 Dog Signal Gate</a>
+          </div>
+          <div class="stats">
+            <div class="stat"><b>已经开源</b><span>三个核心产品已经开放，后续上传仓库后同步真实 repo 链接</span></div>
+            <div class="stat"><b>快速验证</b><span>不用从零搭建组件，直接用沙盒验证策略、微结构信号和组合逻辑</span></div>
+            <div class="stat"><b>持续 Alpha</b><span>用数据归因、AI 决策和持续学习，提高机会发现与执行质量</span></div>
+          </div>
+        </div>
+
+        <div class="console reveal">
+          <div class="console-top">
+            <div class="lights"><i></i><i></i><i></i></div>
+            <span>dog-signal-gate/open-alpha-stack</span>
+          </div>
+          <div class="console-body">
+            <div class="stack-equation" aria-label="1 plus 2 plus 3 plus you">
+              <div class="eq-token"><strong>1</strong>知识</div>
+              <div class="eq-plus">+</div>
+              <div class="eq-token"><strong>2</strong>验证</div>
+              <div class="eq-plus">+</div>
+              <div class="eq-token"><strong>3</strong>决策</div>
+              <div class="eq-plus">+</div>
+              <div class="eq-token you"><strong>YOU</strong>共建者</div>
+            </div>
+            <div class="flow">
+              <code>01</code>
+              <div>
+                <h3>Knowledge MCP</h3>
+                <p>沉淀 AI Engineering、交易工程和策略审计经验，让 AI 持续学习。</p>
+              </div>
+              <span class="tag">Knowledge</span>
+            </div>
+            <div class="flow">
+              <code>02</code>
+              <div>
+                <h3>Strategy Lab</h3>
+                <p>用沙盒快速验证策略、微结构信号和混合交易逻辑。</p>
+              </div>
+              <span class="tag">Research</span>
+            </div>
+            <div class="flow">
+              <code>03</code>
+              <div>
+                <h3>AI Trader</h3>
+                <p>为不同策略训练 AI 决策器，持续学习哪些机会更值得执行。</p>
+              </div>
+              <span class="tag">Decision</span>
+            </div>
+            <div class="flow">
+              <code>+</code>
+              <div>
+                <h3>You</h3>
+                <p>贡献代码、策略、数据、复盘和实盘经验，把工具变成真正可用的系统。</p>
+              </div>
+              <span class="tag">Builder</span>
+            </div>
+          </div>
+          <div class="community-result">
+            <b>最终目标：合作共赢的开源社群与产品体系</b>
+            <span>产品提供基础设施，社群提供真实反馈和持续迭代，一起寻找更稳定的 Alpha。</span>
+          </div>
+          <div class="signal-board">
+            <div class="board-head">
+              <span>Collaboration Path</span>
+              <span>Build > Test > Learn > Win</span>
+            </div>
+            <div class="bars">
+              <div class="bar"><span style="width:42%"></span></div>
+              <div class="bar"><span style="width:61%"></span></div>
+              <div class="bar"><span style="width:78%"></span></div>
+              <div class="bar"><span style="width:88%"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="products">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>三个已经开源的产品</h2>
+          <p>这不是三个孤立页面，而是一套可以组合使用的交易研发系统。每个产品都能独立运行，也能串联成完整的信号生产、验证、归因和执行闭环。后续上传仓库后，将在这里同步真实 repo 链接。</p>
+        </div>
+        <div class="cards-3">
+          <article class="product reveal">
+            <span class="num">01</span>
+            <h3>Knowledge MCP</h3>
+            <p>面向 AI IDE、Agent 和交易研发流程的 AI Engineering 知识层。它把策略设计、市场微结构、回测审计、参数稳健性、风险控制和模型训练规范整理成可复用、可调用、可审计的上下文，让 AI 能持续学习项目经验，用户也能少翻专业资料、少踩重复的坑，更快把想法推进到可验证的实验。</p>
+            <div class="feature-list">
+              <div><span class="check">✓</span><span>AI Engineering 规范与持续学习上下文</span></div>
+              <div><span class="check">✓</span><span>回测审计、OOS 验证和成本建模方法</span></div>
+              <div><span class="check">✓</span><span>统一交易工程术语，减少协作误差</span></div>
+              <div><span class="check">✓</span><span>为 AI Agent 提供稳定的专业上下文</span></div>
+            </div>
+            <div class="repo">Open source · repo link syncing soon</div>
+          </article>
+
+          <article class="product reveal">
+            <span class="num">02</span>
+            <h3>Strategy Lab</h3>
+            <p>用于策略研发和快速验证的沙盒实验室。用户不需要从零搭建回测、数据、执行和评估组件，就可以把想法直接放进 <span class="hl-cyan">回测</span>、<span class="hl-lime">回放</span>、<span class="hl-amber">模拟盘</span> 和 <span class="hl-rose">Trade Quality</span> 归因流程里验证，并把原始信号沉淀成可分析、可复盘的数据资产。</p>
+            <div class="feature-list">
+              <div><span class="check">✓</span><span>内置策略验证沙盒，快速测试趋势、突破、均值回归等想法</span></div>
+              <div><span class="check">✓</span><span>支持参数矩阵、样本外验证和 walk-forward 稳健性测试</span></div>
+              <div><span class="check">✓</span><span>支持微结构特征，如 OFI、CVD、盘口变化和订单流信号</span></div>
+              <div><span class="check">✓</span><span>可将微结构信号与传统 K 线策略混合验证，寻找更稳定的组合逻辑</span></div>
+            </div>
+            <div class="repo">Open source · repo link syncing soon</div>
+          </article>
+
+          <article class="product reveal">
+            <span class="num">03</span>
+            <h3>AI Trader</h3>
+            <p>工作在策略信号之后的多策略智能决策层。AI Trader 不负责凭空生成交易，而是在已有候选信号之上，结合市场状态、开仓前特征和历史交易质量，为不同策略训练各自的 AI 决策器，输出 Take、Skip、Score 等执行建议。</p>
+            <div class="feature-list">
+              <div><span class="check">✓</span><span>候选信号评分与交易过滤</span></div>
+              <div><span class="check">✓</span><span>规则层 + 模型层的双重 Gate</span></div>
+              <div><span class="check">✓</span><span>支持为多个不同策略训练独立 AI，比较不同决策器表现</span></div>
+              <div><span class="check">✓</span><span>可启动持续学习，每天自动吸收新积累的数据和交易结果</span></div>
+              <div><span class="check">✓</span><span>基于 OOS、Paper 和小资金实盘验证，持续学习哪些机会更值得执行</span></div>
+            </div>
+            <div class="repo">Open source · repo link syncing soon</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="mission">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>Dog Signal Gate 的社群目标</h2>
+          <p>Dog Signal Gate 是社群名称，也是这套开源系统的协作入口。我们希望把单人研究变成多人共建，把零散脚本变成可验证系统，把交易经验变成可沉淀的工程资产。</p>
+        </div>
+        <div class="mission">
+          <div class="panel reveal">
+            <h3>一起开发和完善系统</h3>
+            <p>欢迎前端、后端、数据工程、量化研究、AI Agent、风控、交易执行等方向的贡献者。你可以写代码、补文档、提交策略实验、改进回测框架、整理数据流程，或者提出更好的系统设计。</p>
+          </div>
+          <div class="panel reveal">
+            <h3>一起寻找更稳定的 alpha</h3>
+            <p>我们不追求不可验证的神秘信号，而是追求可复现、可归因、可迭代的研究流程。真正有价值的 alpha 应该经得起成本、滑点、样本外、模拟盘和小资金实盘的检验。</p>
+          </div>
+          <div class="panel reveal">
+            <h3>一起成长，也一起赚钱</h3>
+            <p>交易系统的价值来自长期协作和持续迭代。社群希望把知识、工具、策略实验和执行经验汇集起来，让参与者在能力、资源和收益机会层面共同成长。</p>
+          </div>
+          <div class="panel reveal">
+            <h3>保持开源透明</h3>
+            <p>项目会优先沉淀代码、文档、实验记录和风险说明。我们鼓励公开讨论问题、公开复盘失败、公开定义指标，让系统从一开始就具备被审计和被改进的能力。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>从想法到执行的系统闭环</h2>
+          <p>系统不依赖单一策略，也不把 AI 当作黑箱神谕。它通过策略工厂生成候选信号，再用稳健性筛选、交易质量归因、规则过滤和 AI Meta Gate 逐层控制信号质量。</p>
+        </div>
+        <div class="pipeline reveal">
+          <div class="pipe"><b>假设库</b><span>策略逻辑、适用市场、时间尺度、风险假设和版本来源</span></div>
+          <div class="pipe"><b>实验层</b><span>多策略、多参数、多标的、多成本模型的系统化回测</span></div>
+          <div class="pipe"><b>稳健层</b><span>寻找参数平台区和跨区间表现，避免单点最优依赖</span></div>
+          <div class="pipe"><b>信号库</b><span>记录触发信号、开仓前特征、执行状态和拒绝原因</span></div>
+          <div class="pipe"><b>质量层</b><span>分析胜率、R 分布、回撤、流动性和执行质量</span></div>
+          <div class="pipe"><b>规则层</b><span>用可解释规则过滤低质量市场环境和交易条件</span></div>
+          <div class="pipe"><b>AI 层</b><span>训练 Meta Gate，完成信号评分与执行决策</span></div>
+        </div>
+
+        <div class="mission" style="margin-top:16px">
+          <div class="panel reveal">
+            <h3>协作分层</h3>
+            <div class="table">
+              <div class="row"><strong>知识层</strong><span>沉淀交易研发方法、策略审计标准和 AI 训练约束。</span></div>
+              <div class="row"><strong>研究层</strong><span>完成策略生成、参数实验、回测回放和模拟盘验证。</span></div>
+              <div class="row"><strong>数据层</strong><span>记录候选信号、开仓前特征、交易结果和质量标签。</span></div>
+              <div class="row"><strong>执行层</strong><span>通过 Rule Gate 和 AI Trader 对候选机会进行双层过滤。</span></div>
+            </div>
+          </div>
+          <div class="panel reveal">
+            <h3>数据资产</h3>
+            <div class="table">
+              <div class="row"><strong>Strategy DB</strong><span>策略逻辑、参数空间、市场假设、版本与实验来源。</span></div>
+              <div class="row"><strong>Experiment DB</strong><span>样本区间、费用滑点、PF、回撤、交易数和 OOS 标记。</span></div>
+              <div class="row"><strong>Signal DB</strong><span>候选信号与开仓前特征，避免只学习幸存样本。</span></div>
+              <div class="row"><strong>Training DB</strong><span>特征、标签、交易结果、模型版本和漂移监控。</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="roadmap">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>共建迭代路线图</h2>
+          <p>三个产品已经开源，下一阶段重点是上传并同步真实仓库链接、补齐文档和示例、扩大真实策略验证，并让贡献者参与持续迭代。</p>
+        </div>
+        <div class="roadmap">
+          <div class="step reveal">
+            <div>
+              <h3>Step 1：同步首批开源仓库</h3>
+              <p>整理并发布项目 README、模块边界、安装说明、贡献规则、风险声明和最小可运行示例。</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div>
+              <h3>MVP 2：打通 Strategy Lab 实验底座</h3>
+              <p>完成策略库、参数配置、批量回测、实验登记表和基础绩效报告，让策略可以被复现和比较。</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div>
+              <h3>MVP 3：沉淀 Trade Quality 数据</h3>
+              <p>围绕时间、标的、趋势、波动、盘口、OI/Funding 和执行质量建立归因数据集。</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div>
+              <h3>MVP 4：训练 AI Trader Meta Gate</h3>
+              <p>在锁参 OOS、Paper 和小资金实盘验证之后，引入模型评分、漂移监控和执行决策反馈。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="join">
+      <div class="wrap">
+        <div class="join reveal">
+          <h2>如果你也想把交易研究做成长期系统，欢迎一起共建。</h2>
+          <p>Dog Signal Gate 会把代码、文档、实验流程和协作规则逐步放到 GitHub。我们寻找的是愿意动手、愿意验证、愿意复盘的人：一起写工具，一起跑实验，一起寻找 alpha，一起把系统做得更稳定。</p>
+          <div class="actions">
+            <a class="btn primary" href="#products">查看开源项目方向</a>
+            <a class="btn" href="#roadmap">查看近期路线</a>
+          </div>
+          <div class="risk">风险提示：本页面只描述开源项目和社群协作方向，不构成投资建议。任何策略、模型或交易信号都需要经过回测、样本外验证、模拟盘和小资金实盘验证，并结合费用、滑点、流动性和个人风险承受能力独立评估。</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div>© 2026 Dog Signal Gate. Open Source AI Trading Community.</div>
+      <div>Knowledge MCP · Strategy Lab · AI Trader</div>
+    </div>
+  </footer>
+
+  <script>
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+
+    window.addEventListener("pageshow", () => {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    });
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>
