@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dog Signal Gate | 共建开源智能交易 Alpha 体系</title>
-  <meta name="description" content="Dog Signal Gate 是一个面向智能交易、量化研究和交易工程的开源共建社群。Knowledge MCP、Strategy Lab、AI Trader 是已经开源的三个产品，后续上传仓库后将同步真实 repo 链接，邀请开发者、研究者和交易者一起完善系统、验证策略、寻找 Alpha。" />
+  <meta name="description" content="Dog Signal Gate 是一个面向智能交易、量化研究和交易工程的开源共建社群。Knowledge MCP、Strategy Lab、AI Trader 三个开源仓库已经上线，邀请开发者、研究者和交易者一起完善系统、验证策略、寻找 Alpha。" />
   <script>
     if ("scrollRestoration" in history) {
       history.scrollRestoration = "manual";
@@ -571,6 +571,28 @@
       font-size: 13px;
     }
 
+    .product .repo a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 42px;
+      padding: 0 13px;
+      border: 1px solid rgba(103,232,249,.22);
+      border-radius: var(--radius);
+      color: #d9fbff;
+      background: rgba(103,232,249,.08);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      font-weight: 900;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .product .repo a:hover {
+      transform: translateY(-1px);
+      border-color: rgba(190,242,100,.36);
+      background: rgba(190,242,100,.10);
+    }
+
     .mission {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -950,13 +972,13 @@
             <img class="hero-logo" src="dog-signal-gate-logo.png" width="1436" height="592" alt="Dog Signal Gate" />
             <span class="accent" data-text="共建开源智能交易 Alpha 体系">共建开源智能交易 Alpha 体系</span>
           </h1>
-          <p class="lead">我们已经把智能交易、量化研究和交易工程沉淀成三套开源产品。后续上传仓库后，会同步真实 repo 链接；现在邀请开发者、研究者和交易者一起完善工具、验证策略、积累数据资产，持续寻找更高质量的 Alpha。</p>
+          <p class="lead">我们已经把智能交易、量化研究和交易工程沉淀成三套开源产品，并完成 GitHub 仓库上线。现在邀请开发者、研究者和交易者一起完善工具、验证策略、积累数据资产，持续寻找更高质量的 Alpha。</p>
           <div class="actions">
             <a class="btn primary" href="#products">查看三个开源项目</a>
             <a class="btn" href="#join">加入 Dog Signal Gate</a>
           </div>
           <div class="stats">
-            <div class="stat"><b>已经开源</b><span>三个核心产品已经开放，后续上传仓库后同步真实 repo 链接</span></div>
+            <div class="stat"><b>仓库上线</b><span>Knowledge MCP、Strategy Lab、AI Trader 三个开源项目已经上线</span></div>
             <div class="stat"><b>快速验证</b><span>不用从零搭建组件，直接用沙盒验证策略、微结构信号和组合逻辑</span></div>
             <div class="stat"><b>持续 Alpha</b><span>用数据归因、AI 决策和持续学习，提高机会发现与执行质量</span></div>
           </div>
@@ -971,7 +993,7 @@
               <span>3<br>决策</span>
               <span>You<br>共建</span>
             </div>
-            <p>产品提供基础设施，社群提供真实反馈和持续迭代，一起把交易研究变成可验证、可复用、可增长的系统。</p>
+            <p>三个开源仓库已经上线。产品提供基础设施，社群提供真实反馈和持续迭代，一起把交易研究变成可验证、可复用、可增长的系统。</p>
           </div>
         </div>
 
@@ -1025,7 +1047,7 @@
           </div>
           <div class="community-result">
             <b>最终目标：合作共赢的开源社群与产品体系</b>
-            <span>产品提供基础设施，社群提供真实反馈和持续迭代，一起寻找更稳定的 Alpha。</span>
+            <span>三个仓库提供基础设施，社群提供真实反馈和持续迭代，一起寻找更稳定的 Alpha。</span>
           </div>
           <div class="signal-board">
             <div class="board-head">
@@ -1046,8 +1068,8 @@
     <section id="products">
       <div class="wrap">
         <div class="section-head reveal">
-          <h2>三个已经开源的产品</h2>
-          <p>这不是三个孤立页面，而是一套可以组合使用的交易研发系统。每个产品都能独立运行，也能串联成完整的信号生产、验证、归因和执行闭环。后续上传仓库后，将在这里同步真实 repo 链接。</p>
+          <h2>三个已经上线的开源产品</h2>
+          <p>这不是三个孤立页面，而是一套可以组合使用的交易研发系统。每个产品都能独立运行，也能串联成完整的信号生产、验证、归因和执行闭环。三个 GitHub 仓库已经上线，欢迎直接查看、试用和参与共建。</p>
         </div>
         <div class="cards-3">
           <article class="product reveal">
@@ -1060,7 +1082,7 @@
               <div><span class="check">✓</span><span>统一交易工程术语，减少协作误差</span></div>
               <div><span class="check">✓</span><span>为 AI Agent 提供稳定的专业上下文</span></div>
             </div>
-            <div class="repo">Open source · repo link syncing soon</div>
+            <div class="repo"><a href="https://github.com/terrydengbin-glitch/rag_mcp" target="_blank" rel="noopener noreferrer">查看仓库 · rag_mcp</a></div>
           </article>
 
           <article class="product reveal">
@@ -1073,7 +1095,7 @@
               <div><span class="check">✓</span><span>支持微结构特征，如 OFI、CVD、盘口变化和订单流信号</span></div>
               <div><span class="check">✓</span><span>可将微结构信号与传统 K 线策略混合验证，寻找更稳定的组合逻辑</span></div>
             </div>
-            <div class="repo">Open source · repo link syncing soon</div>
+            <div class="repo"><a href="https://github.com/terrydengbin-glitch/Strategy-Lab" target="_blank" rel="noopener noreferrer">查看仓库 · Strategy-Lab</a></div>
           </article>
 
           <article class="product reveal">
@@ -1087,7 +1109,7 @@
               <div><span class="check">✓</span><span>可启动持续学习，每天自动吸收新积累的数据和交易结果</span></div>
               <div><span class="check">✓</span><span>基于 OOS、Paper 和小资金实盘验证，持续学习哪些机会更值得执行</span></div>
             </div>
-            <div class="repo">Open source · repo link syncing soon</div>
+            <div class="repo"><a href="https://github.com/terrydengbin-glitch/ai_traders" target="_blank" rel="noopener noreferrer">查看仓库 · ai_traders</a></div>
           </article>
         </div>
       </div>
@@ -1163,30 +1185,30 @@
       <div class="wrap">
         <div class="section-head reveal">
           <h2>共建迭代路线图</h2>
-          <p>三个产品已经开源，下一阶段重点是上传并同步真实仓库链接、补齐文档和示例、扩大真实策略验证，并让贡献者参与持续迭代。</p>
+          <p>三个开源仓库已经上线，下一阶段重点是补齐文档和示例、扩大真实策略验证、沉淀贡献规则，并让更多贡献者参与持续迭代。</p>
         </div>
         <div class="roadmap">
           <div class="step reveal">
             <div>
-              <h3>Step 1：同步首批开源仓库</h3>
-              <p>整理并发布项目 README、模块边界、安装说明、贡献规则、风险声明和最小可运行示例。</p>
+              <h3>Step 1：完善已上线仓库</h3>
+              <p>围绕三个已上线 repo 持续补充 README、模块边界、安装说明、贡献规则、风险声明和最小可运行示例。</p>
             </div>
           </div>
           <div class="step reveal">
             <div>
-              <h3>MVP 2：打通 Strategy Lab 实验底座</h3>
+              <h3>Step 2：打通 Strategy Lab 实验底座</h3>
               <p>完成策略库、参数配置、批量回测、实验登记表和基础绩效报告，让策略可以被复现和比较。</p>
             </div>
           </div>
           <div class="step reveal">
             <div>
-              <h3>MVP 3：沉淀 Trade Quality 数据</h3>
+              <h3>Step 3：沉淀 Trade Quality 数据</h3>
               <p>围绕时间、标的、趋势、波动、盘口、OI/Funding 和执行质量建立归因数据集。</p>
             </div>
           </div>
           <div class="step reveal">
             <div>
-              <h3>MVP 4：训练 AI Trader Meta Gate</h3>
+              <h3>Step 4：训练 AI Trader Meta Gate</h3>
               <p>在锁参 OOS、Paper 和小资金实盘验证之后，引入模型评分、漂移监控和执行决策反馈。</p>
             </div>
           </div>
@@ -1198,7 +1220,7 @@
       <div class="wrap">
         <div class="join reveal">
           <h2>如果你也想把交易研究做成长期系统，欢迎一起共建。</h2>
-          <p>Dog Signal Gate 会把代码、文档、实验流程和协作规则逐步放到 GitHub。我们寻找的是愿意动手、愿意验证、愿意复盘的人：一起写工具，一起跑实验，一起寻找 alpha，一起把系统做得更稳定。</p>
+          <p>Dog Signal Gate 的三个开源仓库已经上线。我们寻找的是愿意动手、愿意验证、愿意复盘的人：一起写工具，一起跑实验，一起完善文档和贡献规则，一起寻找 Alpha，把系统做得更稳定。</p>
           <div class="actions">
             <a class="btn primary" href="#products">查看开源项目方向</a>
             <a class="btn" href="#roadmap">查看近期路线</a>
