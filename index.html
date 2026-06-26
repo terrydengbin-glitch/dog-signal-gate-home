@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dog Signal Gate | 共建开源智能交易 Alpha 体系</title>
-  <meta name="description" content="Dog Signal Gate 是一个面向智能交易、量化研究和交易工程的开源共建社群。Knowledge MCP、Strategy Lab、AI Trader 三个开源仓库已经上线，邀请开发者、研究者和交易者一起完善系统、验证策略、寻找 Alpha。" />
+  <meta name="description" content="Dog Signal Gate 是一个面向智能交易、量化研究和交易工程的开源共建社群。Knowledge MCP、Strategy Lab、AI Trader、OFICVD、onlyBTC 五个开源仓库已经上线，邀请开发者、研究者和交易者一起完善系统、验证策略、寻找 Alpha。" />
   <script>
     if ("scrollRestoration" in history) {
       history.scrollRestoration = "manual";
@@ -503,9 +503,9 @@
       line-height: 1.72;
     }
 
-    .cards-3 {
+    .product-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
     }
 
@@ -767,7 +767,7 @@
 
     @media (max-width: 980px) {
       .hero-grid, .mission { grid-template-columns: 1fr; }
-      .cards-3 { grid-template-columns: 1fr; }
+      .product-grid { grid-template-columns: 1fr; }
       .pipeline { grid-template-columns: 1fr; }
       .pipe:not(:last-child)::after {
         right: 50%;
@@ -972,13 +972,13 @@
             <img class="hero-logo" src="dog-signal-gate-logo.png" width="1436" height="592" alt="Dog Signal Gate" />
             <span class="accent" data-text="共建开源智能交易 Alpha 体系">共建开源智能交易 Alpha 体系</span>
           </h1>
-          <p class="lead">我们已经把智能交易、量化研究和交易工程沉淀成三套开源产品，并完成 GitHub 仓库上线。现在邀请开发者、研究者和交易者一起完善工具、验证策略、积累数据资产，持续寻找更高质量的 Alpha。</p>
+          <p class="lead">我们已经把智能交易、量化研究和交易工程沉淀成五个开源项目，并完成 GitHub 仓库上线。现在邀请开发者、研究者和交易者一起完善工具、验证策略、积累数据资产，持续寻找更高质量的 Alpha。</p>
           <div class="actions">
-            <a class="btn primary" href="#products">查看三个开源项目</a>
+            <a class="btn primary" href="#products">查看五个开源项目</a>
             <a class="btn" href="#join">加入 Dog Signal Gate</a>
           </div>
           <div class="stats">
-            <div class="stat"><b>仓库上线</b><span>Knowledge MCP、Strategy Lab、AI Trader 三个开源项目已经上线</span></div>
+            <div class="stat"><b>仓库上线</b><span>Knowledge MCP、Strategy Lab、AI Trader、OFICVD、onlyBTC 五个开源项目已经上线</span></div>
             <div class="stat"><b>快速验证</b><span>不用从零搭建组件，直接用沙盒验证策略、微结构信号和组合逻辑</span></div>
             <div class="stat"><b>持续 Alpha</b><span>用数据归因、AI 决策和持续学习，提高机会发现与执行质量</span></div>
           </div>
@@ -993,7 +993,7 @@
               <span>3<br>决策</span>
               <span>You<br>共建</span>
             </div>
-            <p>三个开源仓库已经上线。产品提供基础设施，社群提供真实反馈和持续迭代，一起把交易研究变成可验证、可复用、可增长的系统。</p>
+            <p>五个开源仓库已经上线。产品提供基础设施，社群提供真实反馈和持续迭代，一起把交易研究变成可验证、可复用、可增长的系统。</p>
           </div>
         </div>
 
@@ -1047,7 +1047,7 @@
           </div>
           <div class="community-result">
             <b>最终目标：合作共赢的开源社群与产品体系</b>
-            <span>三个仓库提供基础设施，社群提供真实反馈和持续迭代，一起寻找更稳定的 Alpha。</span>
+            <span>五个仓库提供基础设施，社群提供真实反馈和持续迭代，一起寻找更稳定的 Alpha。</span>
           </div>
           <div class="signal-board">
             <div class="board-head">
@@ -1068,10 +1068,10 @@
     <section id="products">
       <div class="wrap">
         <div class="section-head reveal">
-          <h2>三个已经上线的开源产品</h2>
-          <p>这不是三个孤立页面，而是一套可以组合使用的交易研发系统。每个产品都能独立运行，也能串联成完整的信号生产、验证、归因和执行闭环。三个 GitHub 仓库已经上线，欢迎直接查看、试用和参与共建。</p>
+          <h2>五个已经上线的开源项目</h2>
+          <p>这不是几个孤立页面，而是一套可以组合使用的交易研发系统。每个项目都能独立运行，也能串联成完整的信号生产、验证、归因和执行闭环。五个 GitHub 仓库已经上线，欢迎直接查看、试用和参与共建。</p>
         </div>
-        <div class="cards-3">
+        <div class="product-grid">
           <article class="product reveal">
             <span class="num">01</span>
             <h3>Knowledge MCP</h3>
@@ -1110,6 +1110,32 @@
               <div><span class="check">✓</span><span>基于 OOS、Paper 和小资金实盘验证，持续学习哪些机会更值得执行</span></div>
             </div>
             <div class="repo"><a href="https://github.com/terrydengbin-glitch/ai_traders" target="_blank" rel="noopener noreferrer">查看仓库 · ai_traders</a></div>
+          </article>
+
+          <article class="product reveal">
+            <span class="num">04</span>
+            <h3>OFICVD</h3>
+            <p>围绕 OFI、CVD、Fusion、Divergence 等市场微结构特征构建的交易系统。它把实时行情采集、订单簿和成交数据对齐、特征计算、信号合成、风控模式和 MCP 编排放进统一工程链路，适合做盘口信号验证、实时信号输出和端到端交易系统实验。</p>
+            <div class="feature-list">
+              <div><span class="check">✓</span><span>支持实时行情、成交和订单簿采集，并按统一 Row Schema 落库</span></div>
+              <div><span class="check">✓</span><span>内置 OFI、CVD、Fusion、Divergence 与 StrategyMode 组件</span></div>
+              <div><span class="check">✓</span><span>通过 HARVEST、SIGNAL、STRATEGY、BROKER、REPORT 等 MCP 薄壳组织系统边界</span></div>
+              <div><span class="check">✓</span><span>适合验证微结构信号、回放回测、复盘报表和端到端冒烟流程</span></div>
+            </div>
+            <div class="repo"><a href="https://github.com/terrydengbin-glitch/OFICVD" target="_blank" rel="noopener noreferrer">查看仓库 · OFICVD</a></div>
+          </article>
+
+          <article class="product reveal">
+            <span class="num">05</span>
+            <h3>onlyBTC</h3>
+            <p>专注 BTC 趋势感知和预警的应用系统。它把后端指标采集、数据库健康检查、趋势窗口、运行时服务、前端看板和发布前烟测串在一起，用更窄的单资产视角沉淀 BTC 研究、监控、预警和日常运维流程。</p>
+            <div class="feature-list">
+              <div><span class="check">✓</span><span>聚焦 BTC 趋势感知、指标窗口、数据源健康检查和预警链路</span></div>
+              <div><span class="check">✓</span><span>包含后端 CLI、SQLite 数据层、前端看板和本地开发端口约定</span></div>
+              <div><span class="check">✓</span><span>提供 fresh clone smoke，覆盖后端测试、依赖审计和前端构建</span></div>
+              <div><span class="check">✓</span><span>适合沉淀单币种研究流程、监控面板和生产前发布卫生检查</span></div>
+            </div>
+            <div class="repo"><a href="https://github.com/terrydengbin-glitch/onlybtc" target="_blank" rel="noopener noreferrer">查看仓库 · onlybtc</a></div>
           </article>
         </div>
       </div>
@@ -1185,13 +1211,13 @@
       <div class="wrap">
         <div class="section-head reveal">
           <h2>共建迭代路线图</h2>
-          <p>三个开源仓库已经上线，下一阶段重点是补齐文档和示例、扩大真实策略验证、沉淀贡献规则，并让更多贡献者参与持续迭代。</p>
+          <p>五个开源仓库已经上线，下一阶段重点是补齐文档和示例、扩大真实策略验证、沉淀贡献规则，并让更多贡献者参与持续迭代。</p>
         </div>
         <div class="roadmap">
           <div class="step reveal">
             <div>
               <h3>Step 1：完善已上线仓库</h3>
-              <p>围绕三个已上线 repo 持续补充 README、模块边界、安装说明、贡献规则、风险声明和最小可运行示例。</p>
+              <p>围绕五个已上线 repo 持续补充 README、模块边界、安装说明、贡献规则、风险声明和最小可运行示例。</p>
             </div>
           </div>
           <div class="step reveal">
@@ -1220,7 +1246,7 @@
       <div class="wrap">
         <div class="join reveal">
           <h2>如果你也想把交易研究做成长期系统，欢迎一起共建。</h2>
-          <p>Dog Signal Gate 的三个开源仓库已经上线。我们寻找的是愿意动手、愿意验证、愿意复盘的人：一起写工具，一起跑实验，一起完善文档和贡献规则，一起寻找 Alpha，把系统做得更稳定。</p>
+          <p>Dog Signal Gate 的五个开源仓库已经上线。我们寻找的是愿意动手、愿意验证、愿意复盘的人：一起写工具，一起跑实验，一起完善文档和贡献规则，一起寻找 Alpha，把系统做得更稳定。</p>
           <div class="actions">
             <a class="btn primary" href="#products">查看开源项目方向</a>
             <a class="btn" href="#roadmap">查看近期路线</a>
@@ -1234,7 +1260,7 @@
   <footer class="footer">
     <div class="wrap footer-inner">
       <div>© 2026 Dog Signal Gate. Open Source AI Trading Community.</div>
-      <div>Knowledge MCP · Strategy Lab · AI Trader</div>
+      <div>Knowledge MCP · Strategy Lab · AI Trader · OFICVD · onlyBTC</div>
     </div>
   </footer>
 
